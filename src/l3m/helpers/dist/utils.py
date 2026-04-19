@@ -206,7 +206,7 @@ class DeviceMeshHandler:
             model_rank = replicate_mesh.get_local_rank()
             if shard_mesh.size() > 1:
                 # multiply with number of shard device
-                model_rank = model_rank * world_size + shard_mesh.get_local_rank()
+                model_rank = model_rank * shard_mesh.size() + shard_mesh.get_local_rank()
                 world_size *= shard_mesh.size()
 
             cp_rank = None
